@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="prototype_vehicle">
+
+	<xacro:arg name="tf_prefix" default="" />
+	<xacro:property name="tf_prefix_" value="$(arg tf_prefix)" />
+	<xacro:if value="${tf_prefix_ == ''}">
+		<xacro:property name="prefix" value="" />
+	</xacro:if>
+	<xacro:unless value="${tf_prefix_ == ''}">
+		<xacro:property name="prefix" value="${tf_prefix_}/" />
+	</xacro:unless>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="imu_link" />
+        <origin xyz="0.019 0.6 0.116" rpy="0 0 3.14" />
+    </joint>
+	<xacro:include filename="$(find prototype_vehicle)/xacro/common_properties.xacro" />
+	<!-- <xacro:include filename="$(find prototype_vehicle)/xacro/gazebo.xacro" /> -->
+	<xacro:include filename="$(find prototype_vehicle)/xacro/base_footprint.xacro" />
+	<xacro:include filename="$(find prototype_vehicle)/xacro/base.xacro" />
+	<!-- <xacro:include filename="$(find prototype_vehicle)/xacro/lift.xacro" />  -->
+	<!-- <xacro:include filename="$(find prototype_vehicle)/xacro/caster_wheels.xacro" /> -->
+	<xacro:include filename="$(find prototype_vehicle)/xacro/right_wheel.xacro" />
+	<xacro:include filename="$(find prototype_vehicle)/xacro/left_wheel.xacro" />
+	<xacro:include filename="$(find prototype_vehicle)/xacro/front_lidar.xacro" />
+	<xacro:include filename="$(find prototype_vehicle)/xacro/back_lidar.xacro" />
+	<xacro:include filename="$(find prototype_vehicle)/xacro/imu.xacro" />
+
+</robot>

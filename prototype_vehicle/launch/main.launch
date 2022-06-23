@@ -1,0 +1,20 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+  <!-- <remap from="/diff_drive_controller/odom" to="/odom" /> -->
+
+  <include file="$(find prototype_vehicle)/launch/rviz.launch" />
+  <include file="$(find prototype_vehicle)/launch/map_load.launch" />
+  <include file="$(find prototype_vehicle)/launch/gazebo.launch" />
+  <include file="$(find prototype_vehicle)/launch/laser_merge.launch" />
+  <include file="$(find prototype_vehicle)/launch/urdf_and_control.launch" />
+  <include file="$(find prototype_vehicle)/launch/amcl.launch" />
+  <include file="$(find prototype_vehicle)/launch/move_base_mir100.launch" />
+  <include file="$(find prototype_vehicle)/launch/robot_ekf.launch" />
+  
+  <!--   <include file="$(find prototype_vehicle)/launch/joystick.launch" /> -->
+  <!-- <include file="$(find prototype_vehicle)/launch/rqt.launch" /> -->
+  <!-- <include file="$(find prototype_vehicle)/launch/static_transforms.launch" /> -->
+  
+
+</launch>
+  

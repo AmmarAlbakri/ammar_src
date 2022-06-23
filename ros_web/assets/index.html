@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>ROS Control Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript"
+        src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript"
+        src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/nav2djs/current/nav2d.min.js"></script>
+
+    <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <script type="text/javascript" src="http://cdn.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
+    <script type="text/javascript" src="http://cdn.robotwebtools.org/nav2djs/current/nav2d.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"> </script>
+
+    <script src="vanilla.js">
+
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100" onload="init()">
+
+    <!-- header of the page -->
+    <header class="header">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1>Boyar Ar-Ge Otonom</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- main content -->
+    <main id="vueApp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{menu_title}}</h3>
+                            <hr>
+                            <label>ROSBridge address</label>
+                            <br>
+                            <input type="text" v-model="rosbridge_address" />
+                            <br>
+                            <button class="mt-2 btn btn-success" v-if="connected"
+                                @click="disconnect">Connected!</button>
+                            <button class="mt-2 btn btn-primary" v-else @click="connect">Connect!</button>
+                            <button class="mt-2 btn btn-primary" @click="draw">Draw</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h1>Simple Map Example</h1>
+                    <!-- <div id="map"></div> -->
+                </div>
+                <div class="col-md-4">
+                    <h1>Simple Navigation Example</h1>
+                    <div id="nav"></div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer mt-auto bg-dark text-light">
+        <div class="container">
+            <h5>Contact: +90 534 311 97 30</h5>
+        </div>
+    </footer>
+
+    
+</body>
+
+</html>

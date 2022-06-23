@@ -1,0 +1,10 @@
+<launch>
+
+    <!-- <node pkg="my_pkg" type="pose2D_to_odom.py" name="pose2D_to_odom" output="screen"/> -->
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+        <rosparam command="load" file="$(find my_pkg)/config/ekf_localization.yaml"/>,
+        <!-- <rosparam command="load" file="$(find my_pkg)/config/deneme_ekf.yaml"/> -->
+
+    </node>
+</launch>

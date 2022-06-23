@@ -1,0 +1,39 @@
+#Configuation for robot odometry EKF
+#
+frequency: 45
+    
+two_d_mode: true
+    
+publish_tf: true
+
+# Complete the frames section 
+odom_frame: odom
+base_link_frame: base_footprint
+world_frame: odom
+map_frame: map
+
+# Complete the odom0 configuration
+odom0: /mobile_robot/mobile_base_controller/odom
+odom0_config: [True, True, False, # X,Y,Z
+               False, False, True, # R,P,Y
+               True, True, False, # Linear velocities
+               False, False, True, # Angular velocities
+               False, False, False] # Linear Acceleration
+odom0_differential: false
+
+# imu0: camera_odom_sample
+# imu0_config: [false, false, False, # X,Y,Z
+#                False, False, False, # R,P,Y
+#                FALSE, FALSE, FALSE, # Linear velocities
+#                False, False, true, # Angular velocities
+#                true, true, true] # Linear Acceleration
+# odom0_differential: false
+
+# # Complete the odom0 configuration
+# odom1: /laser_odom
+# odom1_config: [True, True, False, # X,Y,Z
+#                False, False, True, # R,P,Y
+#                False, False, False, # Linear velocities
+#                False, False, False, # Angular velocities
+#                False, False, False,] # Linear Acceleration
+# odom1_differential: false

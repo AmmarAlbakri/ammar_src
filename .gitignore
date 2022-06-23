@@ -1,0 +1,5 @@
+.vscode/
+.github/
+.git/
+**/*.zip
+*.vscode

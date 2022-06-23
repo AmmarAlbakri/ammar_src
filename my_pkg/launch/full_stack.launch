@@ -1,0 +1,74 @@
+<launch>
+
+    <!-- Parameters -->
+    <arg name="front_laser_ip" value="192.168.0.11" />
+    <arg name="back_laser_ip" value="192.168.0.10" />
+
+    <arg name="web_ip" value="192.168.3.25" />
+    <arg name="motor_port" value="/dev/ttyUSB0" />
+
+    <!-- <arg name="map_file_name" value="newmap.yaml" /> -->
+
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find my_pkg)/rviz/full_stack.rviz" />
+
+
+    <!-- Map File -->
+    <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(find my_pkg)/maps/$(arg map_file_name)" /> -->
+
+
+    <!-- URDF Model -->
+    <include file="$(find prototype_vehicle)/launch/upload_urdf.launch" />
+
+    <!-- Diff Drive -->
+    <include file="$(find mobile_robot_autonomous_navigation)/launch/diff_drive.launch" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="fake_odom" args="1 0 0 0 0 0 1 map odom 100" /> -->
+
+    <!-- Pilz Lidar -->
+    <include file="$(find psen_scan_v2)/launch/two_scanners.launch">
+        <arg name="front_laser_ip" value="$(arg front_laser_ip)" />
+        <!-- <arg name="back_laser_ip" value="$(arg back_laser_ip)" /> -->
+    </include> 
+
+    <!-- <include file="$(find ira_laser_tools)/launch/laserscan_merger.launch" /> -->
+
+
+    <!-- Web Control -->
+    <!-- <include file="$(find my_pkg)/launch/web_control.launch">
+        <arg name="ip" value="$(arg web_ip)" />
+        <arg name="motor_port" value="$(arg motor_port)" />
+    </include>  -->
+
+    <!-- Laser Scan Matcher -->
+    <!-- <include file="$(find laser_scan_matcher)/demo/demo_gmapping.launch" /> -->
+    <!-- <include file="$(find my_pkg)/launch/mapping.launch" /> -->
+
+    <!-- realsense t265 -->
+    <!-- <include file="$(find realsense2_camera)/launch/rs_t265.launch" /> -->
+
+    <!-- EKF -->
+    <!-- <include file="$(find my_pkg)/launch/ekf.launch"/> -->
+
+    <!-- <include file="$(find hector_slam_launch)/launch/tutorial.launch" /> -->
+    <!-- <include file="$(find navigation)/launch/hector_mapping.launch" /> -->
+    <!-- <include file="$(find my_pkg)/launch/mapping.launch" /> -->
+
+    <!-- AMCL -->
+    <!-- <include file="$(find navigation)/launch/amcl.launch" /> -->
+
+    <!-- Move Base -->
+    <!-- <include file="$(find navigation)/launch/move_base.launch" /> -->
+
+    <!-- <arg name="local_planner" default="dwb" doc="Local planner can be either dwa, eband, base, teb or pose" />
+    <arg name="with_virtual_walls" default="false" /> -->
+
+    <!-- <include file="$(find mir_navigation)/launch/move_base.xml">
+        <arg name="local_planner" value="$(arg local_planner)" />
+        <arg name="with_virtual_walls" value="$(arg with_virtual_walls)" />
+    </include> -->
+    <!-- <include file="$(find navigation)/launch/newMove_base.launch" />  -->
+    <!-- Parametre denemeleri için -->
+
+
+</launch>

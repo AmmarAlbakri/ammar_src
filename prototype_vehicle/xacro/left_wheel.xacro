@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="left_wheel_link_origin" value="0 0 0" />
+    <xacro:property name="left_wheel_mass" value="11.162" />
+    <xacro:property name="left_wheel_Ixx" value="0.021" />
+    <xacro:property name="left_wheel_Ixy" value="${-1.185 * 0.000001}" />
+    <xacro:property name="left_wheel_Ixz" value="0" />
+    <xacro:property name="left_wheel_Iyx" value="${-1.185 * 0.000001}" />
+    <xacro:property name="left_wheel_Iyy" value="0.032" />
+    <xacro:property name="left_wheel_Iyz" value="0" />
+    <xacro:property name="left_wheel_Izx" value="0" />
+    <xacro:property name="left_wheel_Izy" value="0" />
+    <xacro:property name="left_wheel_Izz" value="0.021" />
+
+    <joint name="left_wheel_joint" type="continuous">
+        <origin xyz="0.335 0.01 -0.015" rpy="0 0 1.57" />
+        <parent link="base_link" />
+        <child link="left_wheel_link" />
+        <axis xyz="0 1 0" />
+        <limit effort="100" velocity="20.0" />
+    </joint>
+
+    <link name="left_wheel_link">
+        <visual>
+            <origin xyz="${left_wheel_link_origin}" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://prototype_vehicle/mesh/Single/Wheel.stl" scale="1 1 1" />
+            </geometry>
+            <material name="Red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="${left_wheel_link_origin}" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://prototype_vehicle/mesh/Single/Wheel.stl" scale="1 1 1" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${left_wheel_mass}" />
+            <inertia ixx="${left_wheel_Ixx}" ixy="${left_wheel_Ixy}" ixz="${left_wheel_Ixz}" iyx="${left_wheel_Iyx}" iyy="${left_wheel_Iyy}" iyz="${left_wheel_Iyz}" izx="${left_wheel_Izx}" izy="${left_wheel_Izy}" izz="${left_wheel_Izz}" />
+        </inertial>
+    </link>
+
+    <gazebo reference="left_wheel_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+</robot>

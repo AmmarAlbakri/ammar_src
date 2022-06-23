@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="safety_service_server" pkg="mir_navigation" type="safety_service_server.py" output="log"/>
+    <node name="speed_limit_service_server" pkg="mir_navigation" type="speed_limit_service_server.py" output="log"/>
+    <node name="lift_service_server" pkg="mir_navigation" type="lift_service_server.py" output="screen"/>
+</launch>
