@@ -55,6 +55,9 @@ catkin_install_python(PROGRAMS
   scripts/process_zones.py
   scripts/visualize_zones.py
 
+
+  scripts/publish_waypoints.py
+
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -1,13 +1,15 @@
 <?xml version="1.0"?>
 <launch>
+    <arg name="model_name" default="maze"/>
+    
   <node name="spawn_maze" pkg="gazebo_ros" type="spawn_model" args="-sdf
-      -file $(find mir_gazebo)/sdf/maze/model.sdf -model walls" output="screen" />
-  <node name="spawn_maze2" pkg="gazebo_ros" type="spawn_model" args="-sdf
-      -file $(find mir_gazebo)/sdf/extra_wall/model.sdf -model extra_walls" output="screen" />
+      -file $(find mir_gazebo)/sdf/$(arg model_name)/model.sdf -model walls" output="screen" />
+  <!-- <node name="spawn_maze2" pkg="gazebo_ros" type="spawn_model" args="-sdf
+      -file $(find mir_gazebo)/sdf/extra_wall/model.sdf -model extra_walls" output="screen" /> -->
   <!-- <node name="spawn_maze3" pkg="gazebo_ros" type="spawn_model" args="-sdf
       -file $(find mir_gazebo)/sdf/corridor/model.sdf -model corridor" output="screen" /> -->
-  <node name="spawn_maze4" pkg="gazebo_ros" type="spawn_model" args="-sdf
+  <!-- <node name="spawn_maze4" pkg="gazebo_ros" type="spawn_model" args="-sdf
       -file $(find mir_gazebo)/sdf/VL_marker/model.sdf -model VL_marker" output="screen" />
   <node name="spawn_maze5" pkg="gazebo_ros" type="spawn_model" args="-sdf
-      -file $(find mir_gazebo)/sdf/docking_station/model.sdf -model docking_station" output="screen" />
+      -file $(find mir_gazebo)/sdf/docking_station/model.sdf -model docking_station" output="screen" /> -->
 </launch>

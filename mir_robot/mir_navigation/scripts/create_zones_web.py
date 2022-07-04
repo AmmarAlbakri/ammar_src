@@ -41,6 +41,14 @@ def save_zone(zone):
     with open(path+"/zones/zones.yaml", 'w') as stream:
         yaml.dump(parsed_yaml, stream)
 
+def clean_zones():
+    r = rospkg.RosPack()
+    path = r.get_path('mir_navigation')
+    with open(path+"/zones/zones.yaml", 'w') as stream:
+        parsed_yaml = {"zone_number":0}
+        yaml.dump(parsed_yaml,stream)
+    pub.publish(Polygon())
+    rospy.set_param("clearZones",False)
 
 if __name__ == "__main__":
     rospy.init_node('create_zones')
@@ -48,4 +56,6 @@ if __name__ == "__main__":
     pub = rospy.Publisher("/new_zone", Polygon, queue_size=10)
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
+        if rospy.get_param("/clearZones",False):
+            clean_zones()
         rate.sleep()

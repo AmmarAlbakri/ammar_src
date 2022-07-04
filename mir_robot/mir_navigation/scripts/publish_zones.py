@@ -10,7 +10,6 @@ import rospkg
 def new_zone_cb(data):
     read_zones()
 
-
 def read_zones():
     global zones
     global zone_number
@@ -32,7 +31,8 @@ def read_zones():
             polygon.points.append(point)
         
         zone = {'polygon': polygon,
-                'zone_id': i+1
+                'zone_id': i+1,
+                'zone_type':  parsed_yaml["zone"+str(i+1)]["zone_type"]
                 }
         zones.append(zone)
 
@@ -40,11 +40,11 @@ def read_zones():
 def publish_zones():
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
-        # print("Publishing " + str(len(zones)) + " zones.")
         for zone in zones:
             msg = Zone()
             msg.polygon = zone["polygon"]
             msg.zone_id = zone["zone_id"]
+            msg.zone_type = zone["zone_type"]
             pub_all.publish(msg)
         rate.sleep()
 

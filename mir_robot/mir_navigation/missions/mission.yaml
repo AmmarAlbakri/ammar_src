@@ -1,3 +1,22 @@
-
+goal1:
+  orientation:
+    w: 0.02046930296061476
+    x: 0.0
+    y: 0.0
+    z: -0.9997904818692296
+  position:
+    x: 12.628255783681553
+    y: 19.110901412218194
+    z: 0.0
+goal2:
+  orientation:
+    w: 0.01594559930831889
+    x: 0.0
+    y: 0.0
+    z: -0.9998728608491675
+  position:
+    x: 12.407516670908645
+    y: 19.106336677357966
+    z: 0.0
 mission_name: 1_goal_mission
-number_of_goals: 0
+number_of_goals: 2

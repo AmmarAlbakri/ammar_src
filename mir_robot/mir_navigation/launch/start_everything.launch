@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <launch>
+    <arg name="ip" default="127.0.0.1"></arg>
+    <arg name="port" default="9090"></arg>
 
-    <include file="$(find mir_gazebo)/launch/mir_maze_world.launch" />
-    <node pkg="rosservice" type="rosservice" name="rosservice" args="call --wait /gazebo/unpause_physics" />
+    <include file="$(find mir_gazebo)/launch/mir_maze_world.launch">
+        <arg name="model_name" value="maze" />
+    </include>
 
     <include file="$(find mir_navigation)/launch/amcl.launch">
         <arg name="initial_pose_x" value="10.0" />
@@ -12,20 +15,29 @@
     <include file="$(find mir_navigation)/launch/start_planner.launch">
         <arg name="map_file" value="$(find mir_gazebo)/maps/maze.yaml" />
         <arg name="with_virtual_walls" value="false" />
-        <!-- <arg name="virtual_walls_map_file" value="$(find mir_gazebo)/maps/maze_virtual_walls.yaml" /> -->
+        <arg name="virtual_walls_map_file" value="$(find mir_gazebo)/maps/maze_virtual_walls.yaml" />
     </include>
+
+    <!-- <node pkg="rosservice" type="rosservice" name="rosservice" args="call wait /gazebo/unpause_physics" /> -->
 
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mir_navigation)/rviz/navigation.rviz" />
 
-    <node name="check_laser" pkg="mir_navigation" type="check_laser.py" output="screen"/>
-    <node name="filter_cmd" pkg="mir_navigation" type="filter_cmd.py" output="screen"/>
+    <node name="check_laser" pkg="mir_navigation" type="check_laser.py" output="screen" />
+    <node name="filter_cmd" pkg="mir_navigation" type="filter_cmd.py" output="screen" />
 
-    <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" output="screen"/>
-    <node name="save_goal" pkg="mir_navigation" type="save_pos_as_goal.py" output="screen"/>
-    <node name="send_goal" pkg="mir_navigation" type="send_goal.py" output="screen"/>
-    <node name="run_mission" pkg="mir_navigation" type="run_mission.py" output="screen"/>
-    
-    <include file="$(find mir_navigation)/launch/zones.launch"/>
-    <include file="$(find mir_navigation)/launch/service_servers.launch"/>
+    <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" output="screen" />
+    <node name="save_goal" pkg="mir_navigation" type="save_pos_as_goal.py" output="screen" />
+    <node name="send_goal" pkg="mir_navigation" type="send_goal.py" output="screen" />
+    <node name="run_mission" pkg="mir_navigation" type="run_mission.py" output="screen" />
+    <node name="publish_waypoints" pkg="mir_navigation" type="publish_waypoints.py" output="screen" />
+
+    <node name="republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" output="screen"/>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+        <arg name="address" default="$(arg ip)" />
+        <arg name="port" default="$(arg port)" />
+    </include>
+
+    <include file="$(find mir_navigation)/launch/zones.launch" />
+    <include file="$(find mir_navigation)/launch/service_servers.launch" />
 
 </launch>

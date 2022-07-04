@@ -9,6 +9,7 @@
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mir_navigation)/rviz/navigation.rviz" />
     
     <node name="filter_cmd" pkg="mir_navigation" type="filter_cmd.py" output="screen"/>
+    <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" output="screen"/>
     
     
 </launch>
