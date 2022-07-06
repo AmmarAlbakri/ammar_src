@@ -1,0 +1,46 @@
+<launch>
+
+  <!--<node pkg="tf" type="static_transform_publisher" name="world_to_odom_tf" args="0 0 0 0 0 0 1 world odom 20" /> -->
+
+  <param name="/use_sim_time" value="true"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <node name="gazebo_arac_ekle_dugumu" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+      args="-urdf -x 0 -y 0 -z 0 -model prototype_vehicle_mini -param robot_description"/>
+  <node name="gazebo_kat_ekle_dugumu" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+      args="-file '$(find prototype_vehicle_mini)/gazebo/gazebo_floor_plan/model.sdf' -sdf -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -model 'floor_plan'"/>
+
+  <param name="robot_description" command="xacro --inorder '$(find prototype_vehicle_mini)/xacro/prototype_vehicle_mini.xacro' " />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />  
+
+  <rosparam file="$(find prototype_vehicle_mini)/config/control_joints.yaml" command="load"/>
+  <node name="velocity_controller" pkg="controller_manager" type="spawner" respawn="true" output="screen"
+      args="joint_state_controller
+            sol_teker_joint_velocity_controller
+            sag_teker_joint_velocity_controller"/>
+            <!-- on_sol_sarhos_teker_joint_velocity_controller
+            on_sol_sarhos_teker_plakasi_joint_velocity_controller
+            on_sag_sarhos_teker_joint_velocity_controller
+            on_sag_sarhos_teker_plakasi_joint_velocity_controller
+            arka_sag_sarhos_teker_joint_velocity_controller
+            arka_sag_sarhos_teker_plakasi_joint_velocity_controller
+            arka_sol_sarhos_teker_joint_velocity_controller
+            arka_sol_sarhos_teker_plakasi_joint_velocity_controller -->
+            
+  <node name="joystick" pkg="prototype_vehicle_mini" type="joystick.py" output="screen"></node>
+
+  <!-- <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
+  <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+  </include> -->
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find prototype_vehicle_mini)/maps/my_map.yaml"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find prototype_vehicle_mini)/rviz/prototype_vehicle_mini.rviz"/>
+
+  <!-- <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"/> -->
+
+</launch>

@@ -3,7 +3,7 @@
     <arg name="ip" default="127.0.0.1"></arg>
     <arg name="port" default="9090"></arg>
 
-    <node pkg="map_server" type="map_server" name="map_server" args="$(find mir_gazebo)/maps/maze.yaml" />
+    <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(find mir_gazebo)/maps/maze.yaml" /> -->
 
     <!-- <node pkg="ros_web" type="run_server.py" name="run_server" output="screen" args="$(arg ip)"/> -->
     

@@ -1,0 +1,29 @@
+<launch>
+  <!-- Move Base Node -->
+  <!-- Subscribe: /move_base_simple/goal -->
+  <!-- Publish: /cmd_vel -->
+  
+  <arg name="no_static_map" default="false"/>
+
+  <node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen">
+
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>  
+
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/path_planner.yaml" command="load"/>
+
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/costmap_common.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/costmap_global_static.yaml" command="load" ns="global_costmap" unless="$(arg no_static_map)"/>
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/costmap_global_laser.yaml" command="load" ns="global_costmap" if="$(arg no_static_map)"/>
+    <param name="global_costmap/width" value="100.0" if="$(arg no_static_map)"/>
+    <param name="global_costmap/height" value="100.0" if="$(arg no_static_map)"/>
+
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/costmap_common.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find prototype_vehicle_mini)/params/MoveBaseParams/costmap_local.yaml" command="load" ns="local_costmap" />
+    <param name="local_costmap/width" value="10.0"/>
+    <param name="local_costmap/height" value="10.0"/>
+
+
+  </node>
+
+</launch>

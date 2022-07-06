@@ -1,0 +1,11 @@
+gazebo_ros_control/pid_gains: 
+  sol_teker_joint: {p: 1, i: 0, d: 0}
+  sag_teker_joint: {p: 1, i: 0, d: 0}
+  on_sol_sarhos_teker_joint: {p: 1, i: 0, d: 0}
+  on_sol_sarhos_teker_plakasi_joint: {p: 1, i: 0, d: 0}
+  on_sag_sarhos_teker_joint: {p: 1, i: 0, d: 0}
+  on_sag_sarhos_teker_plakasi_joint: {p: 1, i: 0, d: 0}
+  arka_sag_sarhos_teker_joint: {p: 1, i: 0, d: 0}
+  arka_sag_sarhos_teker_plakasi_joint: {p: 1, i: 0, d: 0}
+  arka_sol_sarhos_teker_joint: {p: 1, i: 0, d: 0}
+  arka_sol_sarhos_teker_plakasi_joint: {p: 1, i: 0, d: 0}
