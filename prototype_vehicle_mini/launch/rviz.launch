@@ -1,5 +1,0 @@
-<launch>
-    <node name="rviz" pkg="rviz" type="rviz" output="log"
-    args="-d $(find prototype_vehicle_mini)/rviz/prototype_vehicle_mini.rviz"/>
-    
-</launch>

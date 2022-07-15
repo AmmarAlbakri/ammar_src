@@ -1,2 +1,0 @@
-gazebo_ros_control/pid_gains: 
-  lift_joint: {p: 0, i: 0, d: 0}

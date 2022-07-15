@@ -25,7 +25,7 @@
     <node name="check_laser" pkg="mir_navigation" type="check_laser.py" output="screen" />
     <node name="filter_cmd" pkg="mir_navigation" type="filter_cmd.py" output="screen" />
 
-    <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" output="screen" />
+    <node name="robot_pose_publisher" pkg="amr_web" type="robot_pose_publisher" output="screen" />
     <node name="save_goal" pkg="mir_navigation" type="save_pos_as_goal.py" output="screen" />
     <node name="send_goal" pkg="mir_navigation" type="send_goal.py" output="screen" />
     <node name="run_mission" pkg="mir_navigation" type="run_mission.py" output="screen" />

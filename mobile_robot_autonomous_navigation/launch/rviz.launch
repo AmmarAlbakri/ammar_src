@@ -1,3 +1,0 @@
-<launch>
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/rviz_config.rviz"/>
-</launch>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="save_goal" pkg="amr_missions" type="save_pos_as_goal.py" output="screen"/>
+    <node name="send_goal" pkg="amr_missions" type="send_goal.py" output="screen"/>
+    <node name="run_mission" pkg="amr_missions" type="run_mission.py" output="screen"/>
+    <node name="publish_waypoints" pkg="amr_missions" type="publish_waypoints.py" output="screen"/>
+</launch>

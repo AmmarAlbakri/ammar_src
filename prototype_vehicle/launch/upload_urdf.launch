@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-    <param name="robot_description" command="xacro --inorder '$(find prototype_vehicle)/xacro/main.xacro' " />
-
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
-
-</launch>

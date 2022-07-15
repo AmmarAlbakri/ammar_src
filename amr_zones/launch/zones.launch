@@ -1,0 +1,7 @@
+<launch>
+    <node name="create_zones" pkg="amr_zones" type="create_zones_web.py" output="screen" />
+    <node name="publish_zones" pkg="amr_zones" type="publish_zones.py" output="screen" />
+    <node name="check_zones" pkg="amr_zones" type="check_zones.py" output="screen" />
+    <node name="process_zones" pkg="amr_zones" type="process_zones.py" output="screen" />
+    <node name="visualize_zones" pkg="amr_zones" type="visualize_zones.py" output="screen" />
+</launch>

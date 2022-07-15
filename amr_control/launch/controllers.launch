@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="motor_port" default="/dev/ttyUSB0"/>
+    <arg name="lift_port" default="/dev/ttyUSB01"/>
+    
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+        <param name="rate" value="50" />
+    </node>
+
+    <rosparam file="$(find amr_control)/param/joint_limits.yaml" command="load" />
+    <rosparam file="$(find amr_control)/param/diff_drive_controller.yaml" command="load" />
+    <rosparam file="$(find amr_control)/param/joint_state_controller.yaml" command="load" />
+
+    <node name="amr_control_hw_interface" pkg="amr_control" type="amr_control_hw_interface" output="screen">
+        <remap from="/diff_drive_controller/cmd_vel" to="/cmd_vel" />
+    </node>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
+    diff_drive_controller
+    joint_state_controller
+    "></node>
+
+    <node name="casters_joint_publisher" pkg="amr_control" type="casters_joint_publisher.py" output="screen" />
+
+    <node name="motor_controller" pkg="amr_control" type="motor_controller.py" output="screen"
+    args="$(arg motor_port)"/>
+    
+    <node name="lift_controller" pkg="amr_control" type="lift_controller.py" output="screen"
+    args="$(arg lift_port)"/>
+
+</launch>

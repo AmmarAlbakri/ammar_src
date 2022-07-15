@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="address" default="127.0.0.1" />
+    <arg name="port" default="9090" />
+
+
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+        <arg name="address" value="$(arg address)" />
+        <arg name="port" value="$(arg port)" />
+    </include>
+
+
+    <node name="robot_pose_publisher" pkg="amr_web" type="robot_pose_publisher" output="screen" />
+    <node name="run_server" pkg="amr_web" type="run_server.py" output="screen" />
+
+
+</launch>

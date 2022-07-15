@@ -1,6 +1,0 @@
-<launch>
-    <!-- <node name="joystick" pkg="prototype_vehicle_mini" type="joystick.py" output="screen"></node> -->
-    
-    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"> </node>
-
-</launch>
