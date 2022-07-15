@@ -2,23 +2,23 @@
 
 <launch>
 
-  <arg name="front_laser_ip" default="192.168.0.11" />
-  <arg name="back_laser_ip" default="192.168.0.10" />
+  <arg name="front_laser_ip" default="192.168.0.10" />
+  <arg name="back_laser_ip" default="192.168.0.11" />
 
 
   <include file="$(find psen_scan_v2)/launch/bringup.launch">
-    <arg name="tf_prefix" value="front_lidar_link" />
+    <arg name="tf_prefix" value="front_laser_link" />
     <arg name="sensor_ip" value="$(arg front_laser_ip)" />
   </include>
   <rosparam ns="front_laser_link" command="load" file="$(find psen_scan_v2)/config/scanner_config.yaml" />
 
-  <!-- <include file="$(find psen_scan_v2)/launch/bringup.launch">
-    <arg name="tf_prefix" value="back_lidar_link" />
+  <include file="$(find psen_scan_v2)/launch/bringup.launch">
+    <arg name="tf_prefix" value="back_laser_link" />
     <arg name="sensor_ip" value="$(arg back_laser_ip)" />
   </include>
-  <rosparam ns="back_laser_link" command="load" file="$(find psen_scan_v2)/config/scanner2_config.yaml" /> -->
-  
-  <!-- <node pkg="topic_tools" type="relay" name="b_scan_relay" args="/back_laser_link/scan /scan"/> -->
-  <!-- <node pkg="topic_tools" type="relay" name="f_scan_relay" args="/front_laser_link/scan /scan"/> -->
-  
+  <rosparam ns="back_laser_link" command="load" file="$(find psen_scan_v2)/config/scanner2_config.yaml" />
+
+  <node pkg="topic_tools" type="relay" name="b_scan_relay" args="/back_laser_link/scan /scan" />
+  <node pkg="topic_tools" type="relay" name="f_scan_relay" args="/front_laser_link/scan /scan" />
+
 </launch>

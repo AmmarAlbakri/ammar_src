@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <joint name="front_lidar_joint" type="fixed">
-        <origin xyz="0.6225 -0.375 0.085" rpy="0 0 -0.785"/>
+    <joint name="front_laser_joint" type="fixed">
+        <origin xyz="0.70 -0.360 0.085" rpy="0 3.14 2.355"/>
         <parent link="base_link"/>
-        <child link="front_lidar_link"/> 
+        <child link="front_laser_link"/> 
         <axis xyz="0 0 1"/> 
     </joint>
     
-    <link name="front_lidar_link">
+    <link name="front_laser_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry> 
@@ -31,8 +31,8 @@
         </inertial>
     </link> 
 
-    <gazebo reference="front_lidar_link">
-        <sensor type="ray" name="front_lidar_sensor">
+    <gazebo reference="front_laser_link">
+        <sensor type="ray" name="front_laser_sensor">
             <pose>0 0 0 0 0 0</pose>
             <visualize>false</visualize>
             <update_rate>50</update_rate>
@@ -58,7 +58,7 @@
             </ray>
             <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
                 <topicName>/scan_front_laser</topicName>
-                <frameName>front_lidar_link</frameName>
+                <frameName>front_laser_link</frameName>
             </plugin>
         </sensor>
     </gazebo>

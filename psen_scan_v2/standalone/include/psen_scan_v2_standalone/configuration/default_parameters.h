@@ -45,7 +45,7 @@ static constexpr double DEFAULT_SCAN_ANGLE_RESOLUTION(data_conversion_layer::deg
 static constexpr double TIME_PER_SCAN_IN_S{ 0.03 };
 
 static constexpr double RANGE_MIN_IN_M{ 0.05 };
-static constexpr double RANGE_MAX_IN_M{ 40. };
+static constexpr double RANGE_MAX_IN_M{ 40 };
 
 static const util::TenthOfDegree DEFAULT_ZONESET_ANGLE_STEP(5);
 }  // namespace configuration

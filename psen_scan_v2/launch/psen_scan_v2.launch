@@ -24,11 +24,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <arg name="tf_prefix" default="laser_1" />
 
   <!-- Start angle of measurement in radian -->
-  <arg name="angle_start" default="$(eval radians(-137.4))" />
+  <arg name="angle_start" default="$(eval radians(-125.4))" />
 
   <!-- End angle of measurement in radian -->
 
-  <arg name="angle_end" default="$(eval radians(137.4))" />
+  <arg name="angle_end" default="$(eval radians(125.4))" />
 
   <!-- Publishing of intensities -->
   <arg name="intensities" default="false" />

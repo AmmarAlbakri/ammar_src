@@ -14,7 +14,7 @@
     <xacro:property name="right_wheel_Izz" value="0.021" />
 
     <joint name="right_wheel_joint" type="continuous">
-        <origin xyz="-0.074 -0.323 -0.05" rpy="0 0 0" />
+        <origin xyz="0 -0.315 -0.05" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="right_wheel_link" />
         <axis xyz="0 1 0" />

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <joint name="back_lidar_joint" type="fixed">
-        <origin xyz="-0.770 0.3675 0.085" rpy="0 0 2.355" />    <!-- <origin xyz="-0.770 0.3675 0.085" rpy="0 0 3.14159265359" /> -->
+    <joint name="back_laser_joint" type="fixed">
+        <origin xyz="-0.685 0.360 0.085" rpy="0 3.14 -0.785" />    <!-- <origin xyz="-0.770 0.3675 0.085" rpy="0 0 3.14159265359" /> -->
         <parent link="base_link" />
-        <child link="back_lidar_link" />
+        <child link="back_laser_link" />
         <axis xyz="0 0 1" />
     </joint>
 
-    <link name="back_lidar_link">
+    <link name="back_laser_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -31,8 +31,8 @@
         </inertial>
     </link>
 
-    <gazebo reference="back_lidar_link">
-        <sensor type="ray" name="back_lidar_sensor">
+    <gazebo reference="back_laser_link">
+        <sensor type="ray" name="back_laser_sensor">
             <pose>0 0 0 0 0 0</pose>
             <visualize>false</visualize>
             <update_rate>50</update_rate>
@@ -58,7 +58,7 @@
             </ray>
             <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
                 <topicName>/scan_back_laser</topicName>
-                <frameName>back_lidar_link</frameName>
+                <frameName>back_laser_link</frameName>
             </plugin>
         </sensor>
     </gazebo>

@@ -12,11 +12,11 @@
 	
 
 	<xacro:include filename="$(find amr_description)/xacro/common_properties.xacro" />
-	<xacro:include filename="$(find amr_description)/xacro/gazebo.xacro" />
+	<!-- <xacro:include filename="$(find amr_description)/xacro/gazebo.xacro" /> -->
 	<xacro:include filename="$(find amr_description)/xacro/base_footprint.xacro" />
 	<xacro:include filename="$(find amr_description)/xacro/base.xacro" />
-	<xacro:include filename="$(find amr_description)/xacro/lift.xacro" />
-	<xacro:include filename="$(find amr_description)/xacro/caster_wheels.xacro" />
+	<!-- <xacro:include filename="$(find amr_description)/xacro/lift.xacro" /> -->
+	<!-- <xacro:include filename="$(find amr_description)/xacro/caster_wheels.xacro" /> -->
 	<xacro:include filename="$(find amr_description)/xacro/right_wheel.xacro" />
 	<xacro:include filename="$(find amr_description)/xacro/left_wheel.xacro" />
 	<xacro:include filename="$(find amr_description)/xacro/back_lidar.xacro" />
