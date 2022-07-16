@@ -3,21 +3,8 @@
 import rospy
 from std_msgs.msg import Int32, Float32
 import sys
-from my_pkg import minimal_modbus
+from amr_control import minimal_modbus
 import pandas as pd
-
-
-def translate(value, leftMin, leftMax, rightMin, rightMax):
-    # Figure out how 'wide' each range is
-    leftSpan = leftMax - leftMin
-    rightSpan = rightMax - rightMin
-
-    # Convert the left range into a 0-1 range (float)
-    valueScaled = float(value - leftMin) / float(leftSpan)
-
-    # Convert the 0-1 range into a value in the right range.
-    return rightMin + (valueScaled * rightSpan)
-
 
 def filter_encoders(encoder):
     global first_read
@@ -86,6 +73,9 @@ def publish_encoder():
 
     prev_encoder = encoder
 
+def cb(msg):
+    global speed
+    speed = msg.data
 
 if __name__ == "__main__":
     args = sys.argv
@@ -96,6 +86,9 @@ if __name__ == "__main__":
 
     rospy.init_node('lift_controller')
     robot = minimal_modbus.LiftDevice(port, 9600)
+
+    speed = 0 # RPM
+    rospy.Subscriber("/liftSpeed",Float32,cb)
 
     diff = 0
     first_read = True
@@ -109,7 +102,9 @@ if __name__ == "__main__":
     print("started lift_controller node")
 
     while not rospy.is_shutdown():
-        speed = 1000 # RPM
         robot.write_speed_command(speed)
-        publish_encoder()
+        # publish_encoder()
         rate.sleep()
+
+    robot.write_speed_command(0)
+    

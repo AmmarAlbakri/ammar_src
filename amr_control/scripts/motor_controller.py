@@ -79,7 +79,6 @@ def filter_encoders(right_encoder, left_encoder):
 
 
 def publish_encoder():
-
     global right_diff
     global left_diff
     global first_read

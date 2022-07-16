@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-    <node name="lift_service_server" pkg="mir_navigation" type="lift_service_server.py" output="screen"/>
-    <node name="save_goal" pkg="mir_navigation" type="save_pos_as_goal.py" output="screen"/>
-    <node name="send_goal" pkg="mir_navigation" type="send_goal.py" output="screen"/>
-    <node name="run_mission" pkg="mir_navigation" type="run_mission.py" output="screen"/>
-    <node name="publish_waypoints" pkg="mir_navigation" type="publish_waypoints.py" output="screen"/>
-</launch>

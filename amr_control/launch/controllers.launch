@@ -22,7 +22,7 @@
     joint_state_controller
     "></node>
 
-    <node name="casters_joint_publisher" pkg="amr_control" type="casters_joint_publisher.py" output="screen" />
+    <!-- <node name="casters_joint_publisher" pkg="amr_control" type="casters_joint_publisher.py" output="screen" /> -->
 
     <node name="motor_controller" pkg="amr_control" type="motor_controller.py" output="screen"
     args="$(arg motor_port)"/>

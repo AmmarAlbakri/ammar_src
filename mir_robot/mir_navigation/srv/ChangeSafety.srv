@@ -1,6 +1,0 @@
-int32 state
----
-int32 result
-
-int32 SAFETY_ON=1
-int32 SAFETY_OFF=0

@@ -15,7 +15,7 @@
         <!-- global costmap params -->
         <rosparam file="$(find amr_navigation)/param/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" subst_value="true" />
         <rosparam file="$(find amr_navigation)/param/costmap/costmap_global_params.yaml" command="load" />
-        <rosparam file="$(find amr_navigation)/param/costmap/costmap_global_params_plugins.yaml" command="load"/>
+        <rosparam file="$(find amr_navigation)/param/costmap/costmap_global_params_plugings.yaml" command="load"/>
 
         <!-- local costmap params -->
         <rosparam file="$(find amr_navigation)/param/costmap/costmap_common_params.yaml" command="load" ns="local_costmap" subst_value="true" />
