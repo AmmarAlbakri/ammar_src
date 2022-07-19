@@ -11,6 +11,7 @@
 	</xacro:unless>
 	
 
+    
 	<xacro:include filename="$(find amr_description)/xacro/common_properties.xacro" />
 	<!-- <xacro:include filename="$(find amr_description)/xacro/gazebo.xacro" /> -->
 	<xacro:include filename="$(find amr_description)/xacro/base_footprint.xacro" />
@@ -22,7 +23,7 @@
 	<xacro:include filename="$(find amr_description)/xacro/back_lidar.xacro" />
 	<xacro:include filename="$(find amr_description)/xacro/front_lidar.xacro" />
 	<xacro:include filename="$(find amr_description)/xacro/imu.xacro" />
-
+	<xacro:include filename="$(find amr_description)/xacro/realsense.xacro" />
 
 	<!-- <xacro:include filename="$(find amr_description)/xacro/transmissions.xacro" /> -->
 	<!-- <xacro:amr_description prefix="${prefix}" /> -->

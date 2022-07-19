@@ -8,7 +8,7 @@ publish_voxel_map: true
 navigation_map:
   map_topic: /map
 obstacles:
-  observation_sources: /back_laser_link/scan_marking /back_laser_link/scan_clearing /front_laser_link/scan_marking /front_laser_link/scan_clearing
+  observation_sources: b_scan_marking b_scan_clearing f_scan_marking f_scan_clearing
   b_scan_marking:
     topic: /back_laser_link/scan
     data_type: LaserScan
