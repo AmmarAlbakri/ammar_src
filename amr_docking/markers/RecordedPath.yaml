@@ -1,0 +1,31 @@
+numberOfPoses: 3
+pose0:
+  orientation:
+    w: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0061
+  position:
+    x: 15.4724
+    y: 6.2328
+    z: 0.0
+pose1:
+  orientation:
+    w: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0055
+  position:
+    x: 15.4707
+    y: 6.2328
+    z: 0.0
+pose2:
+  orientation:
+    w: 0.9995
+    x: 0.0
+    y: 0.0
+    z: -0.0318
+  position:
+    x: 15.5662
+    y: 6.2308
+    z: 0.0

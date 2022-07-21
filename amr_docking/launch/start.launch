@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="record_path" pkg="amr_docking" type="record_path.py" output="screen"/>
+    <!-- <node name="run_recorded_path" pkg="amr_docking" type="run_recorded_path.py" output="screen"/> -->
+</launch>
