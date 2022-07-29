@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="deg_to_rad" value="0.017453293" />
+
+  <xacro:property name="front_caster_wheel_base_dx" value="0.4315" />
+  <xacro:property name="back_caster_wheel_base_dx" value="-0.5790" />
+  <xacro:property name="left_caster_wheel_base_dy" value="0.3165" />
+  <xacro:property name="right_caster_wheel_base_dy" value="-0.324" />
+  <xacro:property name="caster_base_dz" value="-0.0326" />
+  <xacro:property name="caster_base_mass" value="0.281" />
+  <xacro:property name="caster_base_Ixx" value="0" />
+  <xacro:property name="caster_base_Ixy" value="0" />
+  <xacro:property name="caster_base_Ixz" value="0" />
+  <xacro:property name="caster_base_Iyx" value="0" />
+  <xacro:property name="caster_base_Iyy" value="0" />
+  <xacro:property name="caster_base_Iyz" value="0" />
+  <xacro:property name="caster_base_Izx" value="0" />
+  <xacro:property name="caster_base_Izy" value="0" />
+  <xacro:property name="caster_base_Izz" value="0" />
+
+  <xacro:property name="caster_rotation_dx" value="0.00005" />
+  <xacro:property name="caster_rotation_dy" value="0" />
+  <xacro:property name="caster_rotation_dz" value="-0.0248" />
+  <xacro:property name="caster_rotation_mass" value="0.309" />
+  <xacro:property name="caster_rotation_Ixx" value="0" />
+  <xacro:property name="caster_rotation_Ixy" value="${1.616 * 0.000001}" />
+  <xacro:property name="caster_rotation_Ixz" value="${8.931 * 0.00001}" />
+  <xacro:property name="caster_rotation_Iyx" value="${1.616 * 0.000001}" />
+  <xacro:property name="caster_rotation_Iyy" value="0" />
+  <xacro:property name="caster_rotation_Iyz" value="${-2.073 * 0.000001}" />
+  <xacro:property name="caster_rotation_Izx" value="${8.931 * 0.00001}" />
+  <xacro:property name="caster_rotation_Izy" value="${-2.073 * 0.000001}" />
+  <xacro:property name="caster_rotation_Izz" value="0" />
+
+  <xacro:property name="caster_wheel_dx" value="0.03775" />
+  <xacro:property name="caster_wheel_dy" value="0" />
+  <xacro:property name="caster_wheel_dz" value="-0.0328" />
+  <xacro:property name="caster_wheel_mass" value="0.834" />
+  <xacro:property name="caster_wheel_Ixx" value="0.0" />
+  <xacro:property name="caster_wheel_Ixy" value="${-9.483 * 0.00000001}" />
+  <xacro:property name="caster_wheel_Ixz" value="${9.254 * 0.000000001}" />
+  <xacro:property name="caster_wheel_Iyx" value="${-9.483 * 0.00000001}" />
+  <xacro:property name="caster_wheel_Iyy" value="0.001" />
+  <xacro:property name="caster_wheel_Iyz" value="${-1.037 * 0.0000001}" />
+  <xacro:property name="caster_wheel_Izx" value="${9.254 * 0.000000001}" />
+  <xacro:property name="caster_wheel_Izy" value="${-1.037 * 0.0000001}" />
+  <xacro:property name="caster_wheel_Izz" value="0.0" />
+
+
+  <xacro:macro name="caster_wheel" params="prefix locationprefix caster_base_dx caster_base_dy">
+    <joint name="${prefix}${locationprefix}_caster_base_joint" type="fixed">
+      <origin xyz="${caster_base_dx} ${caster_base_dy} ${caster_base_dz}" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="${prefix}${locationprefix}_caster_base_link" />
+    </joint>
+
+    <link name="${prefix}${locationprefix}_caster_base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel Base/Caster_wheel_base_lowest_mesh.stl" />
+        </geometry>
+        <xacro:insert_block name="material_silver" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel Base/Caster_wheel_base_lowest_mesh.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="${caster_base_mass}" />
+        <inertia ixx="${caster_base_Ixx}" ixy="${caster_base_Ixy}" ixz="${caster_base_Ixz}" iyx="${caster_base_Iyx}" iyy="${caster_base_Iyy}" iyz="${caster_base_Iyz}" izx="${caster_base_Izx}" izy="${caster_base_Izy}" izz="${caster_base_Izz}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${prefix}${locationprefix}_caster_base_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+
+    <joint name="${prefix}${locationprefix}_caster_rotation_joint" type="continuous">
+      <origin xyz="${caster_rotation_dx} ${caster_rotation_dy} ${caster_rotation_dz}" rpy="0 0 ${pi}" />
+      <parent link="${prefix}${locationprefix}_caster_base_link" />
+      <child link="${prefix}${locationprefix}_caster_rotation_link" />
+      <axis xyz="0 0 1" />
+      <dynamics damping="0.01" friction="0.0" />
+    </joint>
+
+    <link name="${prefix}${locationprefix}_caster_rotation_link">
+      <visual>
+        <origin xyz="0.01275 -0.00025 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel Rotation/Caster_wheel_rotation_lowest_mesh.stl" />
+        </geometry>
+        <xacro:insert_block name="material_silver" />
+      </visual>
+      <collision>
+        <origin xyz="0.01275 -0.00025 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel Rotation/Caster_wheel_rotation_lowest_mesh.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="${caster_rotation_mass}" />
+        <inertia ixx="${caster_rotation_Ixx}" ixy="${caster_rotation_Ixy}" ixz="${caster_rotation_Ixz}" iyx="${caster_rotation_Iyx}" iyy="${caster_rotation_Iyy}" iyz="${caster_rotation_Iyz}" izx="${caster_rotation_Izx}" izy="${caster_rotation_Izy}" izz="${caster_rotation_Izz}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${prefix}${locationprefix}_caster_rotation_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+
+    <joint name="${prefix}${locationprefix}_caster_wheel_joint" type="continuous">
+      <origin xyz="${caster_wheel_dx} ${caster_wheel_dy} ${caster_wheel_dz}" rpy="0 0 0" />
+      <parent link="${prefix}${locationprefix}_caster_rotation_link" />
+      <child link="${prefix}${locationprefix}_caster_wheel_link" />
+      <axis xyz="0 1 0" />
+    </joint>
+
+    <link name="${prefix}${locationprefix}_caster_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel/Caster_wheel_lowest_mesh.stl" />
+        </geometry>
+        <xacro:insert_block name="material_dark_grey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://amr_description/mesh/Caster Wheel/Caster_wheel_lowest_mesh.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="${caster_wheel_mass}" />
+        <inertia ixx="${caster_wheel_Ixx}" ixy="${caster_wheel_Ixy}" ixz="${caster_wheel_Ixz}" iyx="${caster_wheel_Iyx}" iyy="${caster_wheel_Iyy}" iyz="${caster_wheel_Iyz}" izx="${caster_wheel_Izx}" izy="${caster_wheel_Izy}" izz="${caster_wheel_Izz}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${prefix}${locationprefix}_caster_wheel_link">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:caster_wheel prefix="${prefix}" locationprefix="fl" caster_base_dx="${front_caster_wheel_base_dx}" caster_base_dy="${left_caster_wheel_base_dy}" />
+  <xacro:caster_wheel prefix="${prefix}" locationprefix="fr" caster_base_dx="${front_caster_wheel_base_dx}" caster_base_dy="${right_caster_wheel_base_dy}" />
+  <xacro:caster_wheel prefix="${prefix}" locationprefix="bl" caster_base_dx="${back_caster_wheel_base_dx}" caster_base_dy="${left_caster_wheel_base_dy}" />
+  <xacro:caster_wheel prefix="${prefix}" locationprefix="br" caster_base_dx="${back_caster_wheel_base_dx}" caster_base_dy="${right_caster_wheel_base_dy}" />
+
+</robot>

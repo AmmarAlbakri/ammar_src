@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="amr_description">
+
+	<xacro:arg name="tf_prefix" default="" />
+	<xacro:property name="tf_prefix_" value="$(arg tf_prefix)" />
+	<xacro:if value="${tf_prefix_ == ''}">
+		<xacro:property name="prefix" value="" />
+	</xacro:if>
+	<xacro:unless value="${tf_prefix_ == ''}">
+		<xacro:property name="prefix" value="${tf_prefix_}/" />
+	</xacro:unless>
+	
+
+	<xacro:include filename="$(find amr_description)/xacro/common_properties.xacro" />
+	<!-- <xacro:include filename="$(find amr_description)/xacro/gazebo.xacro" /> -->
+	<xacro:include filename="$(find amr_description)/xacro/base_footprint.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/base.xacro" />
+	<!-- <xacro:include filename="$(find amr_description)/xacro/lift.xacro" /> -->
+	<!-- <xacro:include filename="$(find amr_description)/xacro/caster_wheels.xacro" /> -->
+	<xacro:include filename="$(find amr_description)/xacro/realsense.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/right_wheel.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/left_wheel.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/back_lidar.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/front_lidar.xacro" />
+	<xacro:include filename="$(find amr_description)/xacro/imu.xacro" />
+
+
+	<!-- <xacro:include filename="$(find amr_description)/xacro/transmissions.xacro" /> -->
+	<!-- <xacro:amr_description prefix="${prefix}" /> -->
+
+</robot>

@@ -1,0 +1,6 @@
+string action
+---
+int32 result
+
+string ACTION_UP='UP'
+string ACTION_DOWN='DOWN'

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <include file="$(find amr_description)/launch/upload_amr_urdf.launch"/>
+    <include file="$(find amr_control)/launch/controllers.launch"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" output="screen"/> -->
+    
+
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="record_path" pkg="amr_docking" type="record_path.py" output="screen"/>
+    <!-- <node name="run_recorded_path" pkg="amr_docking" type="run_recorded_path.py" output="screen"/> -->
+    <node name="docking" pkg="amr_docking" type="docking.py" output="screen"/>
+    <node name="read_yaw_from_imu" pkg="amr_docking" type="read_yaw_from_imu.py" output="screen"/>
+
+
+</launch>

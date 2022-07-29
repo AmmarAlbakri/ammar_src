@@ -1,0 +1,4 @@
+<launch>
+    <arg name="tf_prefix" default="" doc="use for multiple amr" />
+    <param name="robot_description" command="xacro '$(find amr_description)/xacro/main.xacro' tf_prefix:=$(arg tf_prefix) " />
+</launch>

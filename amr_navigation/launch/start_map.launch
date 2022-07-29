@@ -1,0 +1,6 @@
+<launch>
+  <arg name="map_file" default="$(find my_pkg)/maps/pilznewmap.yaml" doc="Path to a map .yaml file (required)." />
+
+  <node name="static_map_server" pkg="map_server" type="map_server" args="$(arg map_file)" output="screen"/>
+
+</launch>
