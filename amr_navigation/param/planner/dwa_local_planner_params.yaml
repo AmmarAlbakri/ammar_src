@@ -1,15 +1,15 @@
 base_local_planner: dwa_local_planner/DWAPlannerROS
 DWAPlannerROS:
   # Robot configuration
-  max_vel_x:  0.8
-  min_vel_x: -0.2
+  max_vel_x:  1.2
+  min_vel_x: -0.5
 
   max_vel_y: 0.0  # diff drive robot
   min_vel_y: 0.0  # diff drive robot
 
-  max_trans_vel: 0.8  # choose slightly less than the base's capability
+  max_trans_vel: 1.2  # choose slightly less than the base's capability
   min_trans_vel: 0.1  # this is the min trans velocity when there is negligible rotational velocity
-  trans_stopped_vel: 0.03
+  trans_stopped_vel: 0.1
 
   # Warning!
   #   do not set min_trans_vel to 0.0 otherwise dwa will always think translational velocities
@@ -17,12 +17,13 @@ DWAPlannerROS:
 
   max_rot_vel: 1.0  # choose slightly less than the base's capability
   min_rot_vel: 0.1  # this is the min angular velocity when there is negligible translational velocity
-  rot_stopped_vel: 0.1
+  rot_stopped_vel: 0.3
 
-  acc_lim_x: 1.5
+  acc_lim_x: 2.0
   acc_lim_y: 0.0      # diff drive robot
   acc_limit_trans: 1.5
   acc_lim_theta: 2.0
+  
 
   # Goal tolerance
   yaw_goal_tolerance: 0.03  # yaw_goal_tolerance > (sim_time * min_rot_vel) / 2 (from Navigation Tuning Guide)
@@ -30,8 +31,8 @@ DWAPlannerROS:
   latch_xy_goal_tolerance: true
 
   # Forward simulation
-  sim_time: 1.2
-  vx_samples: 15
+  sim_time: 1
+  vx_samples: 25
   vy_samples: 1       # diff drive robot, there is only one sample
   vtheta_samples: 20
 

@@ -6,7 +6,7 @@
   
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_amr" clear_params="true" output="screen" >
   
-      <param name="frequency" value="30"/>
+      <param name="frequency" value="60"/>
       <param name="sensor_timeout" value="0.1"/>
       <param name="two_d_mode" value="true"/>
       <!-- <remap from="odometry/filtered" to="odom"/> -->

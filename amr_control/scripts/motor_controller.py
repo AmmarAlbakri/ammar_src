@@ -51,7 +51,7 @@ def filter_encoders(right_encoder, left_encoder):
         "right": right_Quartile[2]-right_Quartile[0]
     }
 
-    K = 1.2
+    K = 1.0
     Outlier_limits = {
         "left":
         {
@@ -86,10 +86,6 @@ def publish_encoder():
     global prev_left_encoder
     global list_right_encode
     global list_left_encode
-    global rightSpeed
-    global leftSpeed
-    global encoder_error
-    global number_of_encoder_error
 
     right_encoder = robot.read_encoder_absolute_status("right")
     left_encoder = robot.read_encoder_absolute_status("left")
@@ -101,48 +97,19 @@ def publish_encoder():
 
     right_diff = right_encoder - prev_right_encoder
     left_diff = left_encoder - prev_left_encoder
+    # print("right diff: " +str(right_diff))
+    if right_diff > 30000*3 or left_diff > 30000*3:
+        rospy.logerr("Encoder Error:" + str(right_diff) + "  --- " + str(left_diff))
+        # return
 
-    real_right_speed = robot.read_speed_status("right")
-    real_left_speed = robot.read_speed_status("left")
+    # # filtreleme
+    # try:
+    #     filter_encoders(right_encoder, left_encoder)
+    # except:
+    #     return
 
-    if real_right_speed > 30000:
-        real_right_speed = 65536 - real_right_speed
-    if real_left_speed > 30000:
-        real_left_speed = 65536 - real_left_speed
-
-    real_right_speed = max(real_right_speed, rightSpeed)
-    real_left_speed = max(real_left_speed, leftSpeed)
-
-    right_tolerance = abs(real_right_speed) * 22
-    left_tolerance = abs(real_left_speed) * 22
-
-
-    if encoder_error:
-        right_tolerance = right_tolerance * 3
-        left_tolerance = left_tolerance * 3
-        encoder_error = False
-
-    if number_of_encoder_error >= 3:
-        prev_right_encoder = right_encoder
-        prev_left_encoder = left_encoder
-
-    # print("Left Speed: " + str(real_left_speed))
-    # print("Right Speed: " + str(real_right_speed))
-
-    if abs(left_diff) > left_tolerance and leftSpeed != 0:
-        rospy.logerr("Left Encoder Error:" + str(left_diff))
-        encoder_error = True
-        number_of_encoder_error += 1
-        return
-
-    if abs(right_diff) > right_tolerance and rightSpeed != 0:
-        rospy.logerr("Right Encoder Error:" + str(right_diff))
-        encoder_error = True
-        number_of_encoder_error += 1
-        return
-
-    # print("left diff: " + str(left_diff))
-    # print("right diff: " + str(right_diff))
+    # rospy.loginfo("Right: " + str(right_diff) +
+    #               " Left: " + str(left_diff))
 
     tick_per_degree = 583
 
@@ -153,7 +120,7 @@ def publish_encoder():
     left_encoder_pub.publish(left_degree)
     prev_right_encoder = right_encoder
     prev_left_encoder = left_encoder
-    number_of_encoder_error = 0
+ 
 
 
 if __name__ == "__main__":
@@ -173,13 +140,11 @@ if __name__ == "__main__":
 
     first_read = True
 
-    encoder_error = False
     prev_right_encoder = None
     prev_left_encoder = None
 
     list_left_encode = []
     list_right_encode = []
-    number_of_encoder_error = 0
 
     right_encoder_pub = rospy.Publisher('right_ticks', Float32, queue_size=100)
     left_encoder_pub = rospy.Publisher('left_ticks', Float32, queue_size=100)
@@ -202,9 +167,5 @@ if __name__ == "__main__":
         else:
             robot.write_speed_command("right", rightSpeed)
             robot.write_speed_command("left", leftSpeed)
-        # print("Right Speed:" + str(rightSpeed) + " RPM")
-        # print("Left Speed:" + str(robot.read_speed_status("left")) + " RPM")
         publish_encoder()
         rate.sleep()
-    robot.write_speed_command("right", 0)
-    robot.write_speed_command("left", 0)

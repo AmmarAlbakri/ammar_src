@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <arg name="motor_port" default="/dev/ttyUSB2"/>
+    <arg name="motor_port" default="/dev/ttyUSB0"/>
     <arg name="lift_port" default="/dev/ttyUSB01"/>
     
 

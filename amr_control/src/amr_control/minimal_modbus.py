@@ -50,7 +50,6 @@ class MotorDevice:
             value = 65535 - abs(value)
         self.write_function_register(20000, motor_name, value)
 
-
     def stop(self):
         self.write_speed_command("right", 0)
         self.write_speed_command("left", 0)
@@ -87,6 +86,9 @@ class LiftDevice:
 
     def read_encoder_absolute_status(self):
         return self.read_status_register(29) + self.read_status_register(30) * 65536
+
+    def read_encoder_absolute_status_Deneme(self, motor_name):
+        return self.read_status_register(29, motor_name)
 
     def write_speed_command(self,  value):
         if(value < 0):

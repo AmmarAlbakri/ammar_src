@@ -38,5 +38,15 @@ goal4:
     x: 6.294905750606852
     y: -0.8333162998125747
     z: -0.14999999999999997
+goal5:
+  orientation:
+    w: -0.7024061234334167
+    x: 0.0
+    y: 0.0
+    z: 0.7117763959019995
+  position:
+    x: 4.796654248248453
+    y: -19.70702730846088
+    z: -0.15
 mission_name: 1_goal_mission
-number_of_goals: 4
+number_of_goals: 5

@@ -1,6 +1,6 @@
 <launch>
     <!--node ns="local_costmap" name="voxel_grid_throttle" pkg="topic_tools" type="throttle" args="messages voxel_grid 3.0 voxel_grid_throttled" /-->
-    <arg name="local_planner" default="dwb" doc="dwa, base, teb or pose"/>
+    <arg name="local_planner" default="base" doc="dwb, base, teb or pose"/>
     <arg name="mprim_file" default="$(find amr_navigation)/mprim/unicycle_highcost_5cm_new.mprim" />
 
 
@@ -11,6 +11,7 @@
 
         <rosparam file="$(find amr_navigation)/param/planner/sbpl_global_params.yaml" command="load" />
         <rosparam file="$(find amr_navigation)/param/planner/$(arg local_planner)_local_planner_params.yaml" command="load" />
+        <!-- <rosparam file="$(find amr_navigation)/param/planner/deneme.yaml" command="load" /> -->
         
         <!-- global costmap params -->
         <rosparam file="$(find amr_navigation)/param/costmap/costmap_common_params.yaml" command="load" ns="global_costmap" subst_value="true" />

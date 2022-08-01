@@ -23,7 +23,7 @@ TrajectoryPlannerROS:
   angular_sim_granularity: 0.04
   vx_samples: 15
   vtheta_samples: 20
-  controller_frequency: 5
+  controller_frequency: 20
 
   # Trajectory scoring parameters
   meter_scoring: true

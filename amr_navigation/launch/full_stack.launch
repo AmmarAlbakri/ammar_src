@@ -7,8 +7,8 @@
     <arg name="front_laser_ip" value="192.168.0.10" />
     <arg name="back_laser_ip" value="192.168.0.11" />
 
-    <arg name="motor_port" default="/dev/ttyUSB1"></arg>
-    <arg name="lift_port" default="/dev/ttyUSB3"></arg>
+    <arg name="motor_port" default="/dev/ttyUSB3"></arg>
+    <arg name="lift_port" default="/dev/ttyUSB1"></arg>
     <arg name="imu_port" default="/dev/ttyUSB2"></arg>
 
     <arg name="map_file_name" default="dogruDepo2.yaml" />
